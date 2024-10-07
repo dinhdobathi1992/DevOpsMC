@@ -33,9 +33,9 @@ jobs:
     # Tag the image with ACR's tag
     - name: Tag Docker Image
       run: |
-        docker tag nginx:alpine ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/nginx:alpine  # Replace with your image name
+        docker tag nginx:alpine myoverlayclusterregistry.azurecr.io/nginx:alpine  # Replace with your image name
 
     # Push the image to ACR
     - name: Push Docker Image to ACR
       run: |
-        docker push ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/nginx:alpine  # Replace with your image name
+        docker push myoverlayclusterregistry.azurecr.io/nginx:alpine  # Replace with your image name
