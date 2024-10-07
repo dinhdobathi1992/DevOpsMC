@@ -39,3 +39,4 @@ jobs:
     - name: Login to ACR
       run: |
         az acr login --name myoverlayclusterregistry.azurecr.io
+        docker push myoverlayclusterregistry.azurecr.io/nginx:alpine
