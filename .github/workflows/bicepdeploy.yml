@@ -36,6 +36,6 @@ jobs:
         docker tag nginx:alpine myoverlayclusterregistry.azurecr.io/nginx:alpine  # Replace with your image name
 
     # Push the image to ACR
-    - name: Push Docker Image to ACR
+    - name: Login to ACR
       run: |
-        docker push myoverlayclusterregistry.azurecr.io/nginx:alpine  # Replace with your image name
+        az acr login --name myoverlayclusterregistry.azurecr.io
