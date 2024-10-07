@@ -24,10 +24,18 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       # Deploy Bicep file
-    - name: Deploy the bicep file
-      uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: ${{ secrets.AZURE_SUB_ID }}
-        resourceGroupName: RG_PolicyTest
-        template: ./Part06IaC/storageaccount.bicep
-        parameters: ./Part06IaC/storageaccount-dev.parameters.json
+
+    # Pull the Docker image (change this to the correct source image)
+    - name: Pull Docker Image
+      run: |
+        docker pull nginx:alpine
+
+    # Tag the image with ACR's tag
+    - name: Tag Docker Image
+      run: |
+        docker tag nginx:alpine ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/nginx:alpine  # Replace with your image name
+
+    # Push the image to ACR
+    - name: Push Docker Image to ACR
+      run: |
+        docker push ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/nginx:alpine  # Replace with your image name
